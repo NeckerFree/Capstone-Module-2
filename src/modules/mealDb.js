@@ -1,4 +1,4 @@
-// MealsDB API method access
+// MealsDB API access methods
 import { getData } from './apiAccess.js';
 
 const MEAL_DB_URL = 'https://www.themealdb.com/api/json/v1/1';
@@ -9,6 +9,9 @@ const getMeals = async (categoryId) => {
   answer = meals;
   return answer;
 };
-const getCategories = () => {};
+const getMealInfo = async (mealId) => {
+  const mealInfo = await getData(MEAL_DB_URL, `lookup.php?i=${mealId}`);
+  return mealInfo;
+};
 
-export { getMeals, getCategories };
+export { getMeals, getMealInfo };

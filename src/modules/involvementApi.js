@@ -23,7 +23,11 @@ const getComments = async (itemId) => {
   answer = data;
   return answer;
 };
-
+const addComment = async (itemId, name, comment) => {
+  const data = { item_id: `${itemId}`, username: `${name}`, comment: `${comment}` };
+  const response = await postData(INVOLVEMENT_API_URL, `apps/${apiId}/comments`, data);
+  return response;
+};
 const getReservations = async (itemId) => {
   let answer = [];
   const data = await getData(INVOLVEMENT_API_URL, `apps/${apiId}/reservations?item_id=${itemId}`);
@@ -33,5 +37,5 @@ const getReservations = async (itemId) => {
 };
 
 export {
-  getLikes, createLike, getComments, getReservations,
+  getLikes, createLike, getComments, getReservations, addComment,
 };
