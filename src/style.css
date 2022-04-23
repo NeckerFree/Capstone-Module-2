@@ -1,3 +1,11 @@
+@import url('https://fonts.cdnfonts.com/css/cocogoose');
+@import url('https://fonts.googleapis.com/css2?family=Lato');
+
+body {
+  font-family: 'Lato', sans-serif;
+  /* 'COCOGOOSE', sans-serif; */
+}
+
 footer {
   border: 1px solid black;
   padding: 10px 15px;
@@ -48,4 +56,132 @@ section {
   margin-left: 0;
   margin-right: auto;
   margin-top: 5px;
+}
+
+header {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.links {
+  list-style: none;
+  display: flex;
+  justify-content: left;
+  width: 700px;
+}
+
+.links li {
+  margin-left: 100px;
+}
+
+.logoContainer {
+  display: inline-block;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid black;
+  margin-left: 50px;
+}
+
+.logo {
+  width: 150px;
+  margin-left: -22px;
+
+}
+
+.show {
+  visibility: visible;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.popup {
+  position: absolute;
+  top: 5%;
+  left: 5px;
+  right: 5px;
+  border: 2px solid black;
+  box-shadow: 0 48px 48px rgba(37, 47, 137, 0.08);
+  background-color: white;
+  width: 80%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px auto;
+  align-items: initial;
+}
+
+.close {
+  height: 10px;
+  right: 10px;
+  margin: 10px 10px;
+}
+
+.heading {
+  display: flex;
+  justify-content: right;
+  margin: 0px;
+}
+
+.dishPop {
+  width: 180px;
+}
+
+.instructions {
+  font-size: 12px;
+  text-align: justify;
+  padding: 0px 30px;
+}
+
+h1 {
+  font-size: 22px;
+  padding: 0px;
+  margin: 5px 0px;
+}
+
+h2 {
+  font-size: 17px;
+  padding: 0px;
+  margin: 3px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input[type=text] {
+  width: 100px;
+  margin: 2px 0px;
+
+}
+
+.area {
+  margin: 2px 0px;
+}
+
+.comments{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+.comments li {
+  list-style: none;
+  font-size: 12px;
+  text-align: start;
+  
 }
