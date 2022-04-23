@@ -3,7 +3,7 @@
 # Capstone Module 2
 
 
-> Web application that get data from https://www.themealdb.com/api.php, and maintains likes, comments and reserevations using Involvement API.
+> Web application that get data from https://www.themealdb.com/api.php maintains likes, comments and reservations using Involvement API.
 
 
 ## Built With
