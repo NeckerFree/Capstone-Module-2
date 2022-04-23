@@ -14,7 +14,7 @@
 
 [Live Demo Link](https://neckerfree.github.io/Capstone-Module-2/)
 
-[Presentation Video](https://www.loom.com/share/51f6bd1fdc254014817f131c54404393)
+[Presentation Video](https://www.loom.com/share/193fcfb744e849e78d0a41a9d2c1c976)
 
 ## Getting Started
 
