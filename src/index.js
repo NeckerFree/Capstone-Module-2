@@ -1,6 +1,6 @@
 // APIs references
 import {
-  getLikes, createLike, getComments, getReservations, addComment
+  getLikes, createLike, getComments, getReservations, addComment,
 } from './modules/involvementApi.js';
 import { getMeals, getMealInfo } from './modules/mealDb.js';
 
@@ -9,7 +9,7 @@ import './style.css';
 import whiteHeart from './icons/whiteHeart.png';
 import redHeart from './icons/redHeart.png';
 import restaurant from './icons/restaurant.png';
-import close from "./icons/close.png";
+import close from './icons/close.png';
 
 // DOM references
 const section = document.getElementsByTagName('section')[0];
@@ -61,19 +61,25 @@ const getReservationsById = async (itemId) => {
   const countReservations = (reservations === undefined) ? 0 : reservations.length;
   return { countReservations, reservations };
 };
-const processData = async (e) => {
+const submitComment = async (e) => {
   e.preventDefault();
   const inputName = document.getElementById('name');
   const inputInsights = document.getElementById('insights');
   const id = document.getElementsByName('mealId')[0].value;
   addComment(id, inputName.value, inputInsights.value);
+  const commments = document.getElementsByClassName('comments')[0];
+  const liComment = document.createElement('li');
+  const date = new Date();
+  liComment.innerHTML = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${inputName.value}: ${inputInsights.value}`;
+  commments.appendChild(liComment);
   const form = document.getElementsByTagName('form')[0];
   form.reset();
 };
-const closePopup=() => {
-  let popupContainer=document.getElementsByClassName('popup')[0];
+const closePopup = () => {
+  const popupContainer = document.getElementsByClassName('popupContainer')[0];
   popupContainer.style.display = 'none';
-  }
+  document.removeChild(popupContainer);
+};
 const showCommentsInfo = async (event) => {
   const button = event.target;
   const mealId = button.id;
@@ -84,16 +90,16 @@ const showCommentsInfo = async (event) => {
     const { countComments, comments } = await getCommentsById(mealId);
     let commentsSection = '';
     if (countComments > 0) {
-      comments.forEach(comment => {
+      comments.forEach((comment) => {
         commentsSection += `<li>${comment.creation_date} ${comment.username}: ${comment.comment}</li>`;
       });
     }
-    let popupContainer = document.createElement('div');
-    popupContainer.classList.add('popup');
-    let popup = document.createElement('div');
-    popup.classList.toggle("show");
+    const popupContainer = document.createElement('div');
+    popupContainer.classList.add('popupContainer');
+    const popup = document.createElement('div');
+    popup.classList.add('popup');
     popup.innerHTML = `<div class='heading'> <a class='close' href='#'><img src='${close}' alt='close icon'></a></div>
-  <div class="content"><div class="content"><div><img class="dishPop" src="${meal.strMealThumb}" alt="mealImage"></div><h1>${meal.strMeal}</h1><p class='instructions' >${meal.strInstructions}</p></div>
+  <div class="content"><div ><div><img class="dishPop" src="${meal.strMealThumb}" alt="mealImage"></div><h1>${meal.strMeal}</h1><p class='instructions' >${meal.strInstructions}</p></div>
   <h2>Comments(${countComments})</h2>
   <ul class='comments'>${commentsSection}</ul>
   <form>
@@ -104,24 +110,14 @@ const showCommentsInfo = async (event) => {
   <input type="hidden" name="mealId" value="${meal.idMeal}">
 </form>
   </div>`;
+
     popupContainer.appendChild(popup);
-    document.body.appendChild(popupContainer);
-    let linkClose=document.getElementsByClassName('close')[0];
+    document.body.prepend(popupContainer);
+    const linkClose = document.getElementsByClassName('close')[0];
     linkClose.addEventListener('click', closePopup);
     const form = document.getElementsByTagName('form')[0];
-    form.addEventListener('submit', processData);
+    form.addEventListener('submit', submitComment);
   }
-};
-
-const showReservationsInfo = async (event) => {
-  const button = event.target;
-  const { countReservations, reservations } = await getReservationsById(button.id);
-  let firstReservation = '';
-  if (countReservations > 0) {
-    const reservation = reservations[0];
-    firstReservation = `First reservation: ${reservation.username} (from ${reservation.date_start} to ${reservation.date_end}) `;
-  }
-  alert(`Reservations: (${countReservations}) \r\n ${firstReservation}`);
 };
 
 const getInitialData = async () => {
@@ -147,16 +143,13 @@ const getInitialData = async () => {
   section.innerHTML = content;
   const heartCollection = document.getElementsByClassName('heart');
   const commentsButtonCollection = document.getElementsByName('CommentsButton');
-  const reservationsButtonCollection = document.getElementsByName('ReservationsButton');
+
   [].forEach.call(heartCollection, (heart) => heart.addEventListener('click', addLike));
   [].forEach.call(commentsButtonCollection, (commentButton) => commentButton.addEventListener('click', showCommentsInfo));
-  [].forEach.call(reservationsButtonCollection, (reservationButton) => reservationButton.addEventListener('click', showReservationsInfo));
 };
 
 window.addEventListener('load', () => {
   getInitialData();
 });
-
-
 
 module.exports = { getCommentsById, getReservationsById, getMealsCount };

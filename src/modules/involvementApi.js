@@ -24,7 +24,7 @@ const getComments = async (itemId) => {
   return answer;
 };
 const addComment = async (itemId, name, comment) => {
-  const data = { item_id: `${itemId}`,  username: `${name}`,comment: `${comment}` };
+  const data = { item_id: `${itemId}`, username: `${name}`, comment: `${comment}` };
   const response = await postData(INVOLVEMENT_API_URL, `apps/${apiId}/comments`, data);
   return response;
 };
@@ -37,5 +37,5 @@ const getReservations = async (itemId) => {
 };
 
 export {
-  getLikes, createLike, getComments, getReservations, addComment
+  getLikes, createLike, getComments, getReservations, addComment,
 };
