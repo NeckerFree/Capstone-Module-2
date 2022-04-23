@@ -67,11 +67,13 @@ const submitComment = async (e) => {
   const inputInsights = document.getElementById('insights');
   const id = document.getElementsByName('mealId')[0].value;
   addComment(id, inputName.value, inputInsights.value);
-  const commments = document.getElementsByClassName('comments')[0];
+  const comments = document.getElementsByClassName('comments')[0];
   const liComment = document.createElement('li');
   const date = new Date();
   liComment.innerHTML = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${inputName.value}: ${inputInsights.value}`;
-  commments.appendChild(liComment);
+  comments.appendChild(liComment);
+  const countComments = document.getElementsByClassName('countComments')[0];
+  countComments.innerHTML = `Comments(${comments.childNodes.length})`;
   const form = document.getElementsByTagName('form')[0];
   form.reset();
 };
@@ -100,7 +102,7 @@ const showCommentsInfo = async (event) => {
     popup.classList.add('popup');
     popup.innerHTML = `<div class='heading'> <a class='close' href='#'><img src='${close}' alt='close icon'></a></div>
   <div class="content"><div ><div><img class="dishPop" src="${meal.strMealThumb}" alt="mealImage"></div><h1>${meal.strMeal}</h1><p class='instructions' >${meal.strInstructions}</p></div>
-  <h2>Comments(${countComments})</h2>
+  <h2 class='countComments'>Comments(${countComments})</h2>
   <ul class='comments'>${commentsSection}</ul>
   <form>
   <h2>Add a comment</h2>
@@ -132,7 +134,7 @@ const getInitialData = async () => {
       const meal = data[index];
       const like = likes.filter((l) => l.item_id === meal.idMeal);
       const likesCount = (like.length === 0) ? 0 : like[0].likes;
-      const itemTemplate = `<div class='meal'><img class='dish' src='${meal.strMealThumb}' alt='${meal.strMeal} image' ><div class='description'><p>${meal.strMeal}</p><div class='likes'><input type="hidden" name="likesCount" value="${likesCount}"><img class='heart' id='${meal.idMeal}' src='${whiteHeart}' alt='likeImg' ></img><label for=''>${likesCount} likes</label></div></div><input class='newButton' type='submit' id='${meal.idMeal}' name='CommentsButton' value='Comments'> <input class='newButton' type='submit' id='${meal.idMeal}' name='ReservationsButton' value='Reservations'></div>`;
+      const itemTemplate = `<div class='meal'><img class='dish' src='${meal.strMealThumb}' alt='${meal.strMeal} image' ><div class='description'><p>${meal.strMeal}</p><div class='likes'><input type="hidden" name="likesCount" value="${likesCount}"><img class='heart' id='${meal.idMeal}' src='${whiteHeart}' alt='likeImg' ></img><label >${likesCount} likes</label></div></div><input class='commentButton' type='submit' id='${meal.idMeal}' name='CommentsButton' value='Comments'> <input class='commentButton' type='submit' id='${meal.idMeal}' name='ReservationsButton' value='Reservations'></div>`;
       content += itemTemplate;
     }
   }

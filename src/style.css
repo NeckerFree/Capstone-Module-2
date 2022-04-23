@@ -24,6 +24,7 @@ section {
   font-size: 15px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .description {
@@ -41,12 +42,12 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 10px;
-  width: 50px;
+  font-size: 17px;
+  width: 80px;
 }
 
-.likes img {
-  width: 16px;
+.heart {
+  width: 60%;
 }
 
 .newButton {
@@ -159,13 +160,14 @@ input[type=text] {
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  width: 60%;
+  width: 40%;
 }
 
 .comments li {
   list-style: none;
   font-size: 12px;
-  text-align: start;
+  text-align: left;
+  padding-left: 40px;
 }
 
 .blurContent {
@@ -180,4 +182,11 @@ input[type=text] {
 
 .bodyOverFlow {
   overflow: hidden;
+}
+
+.commentButton {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8px;
 }

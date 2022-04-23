@@ -5,11 +5,11 @@ const INVOLVEMENT_API_URL = 'https://us-central1-involvement-api.cloudfunctions.
 
 const apiId = 'mJ38T1cF1k53CeEkLunA';
 const getLikes = async () => {
-  let answer = [];
+  let likes = [];
   const data = await getData(INVOLVEMENT_API_URL, `apps/${apiId}/likes`);
-  answer = data;
+  likes = data;
 
-  return answer;
+  return likes;
 };
 const createLike = async (itemId) => {
   const data = { item_id: `${itemId}` };
@@ -18,10 +18,10 @@ const createLike = async (itemId) => {
 };
 
 const getComments = async (itemId) => {
-  let answer = [];
+  let comments = [];
   const data = await getData(INVOLVEMENT_API_URL, `apps/${apiId}/comments?item_id=${itemId}`);
-  answer = data;
-  return answer;
+  comments = data;
+  return comments;
 };
 const addComment = async (itemId, name, comment) => {
   const data = { item_id: `${itemId}`, username: `${name}`, comment: `${comment}` };
@@ -29,11 +29,11 @@ const addComment = async (itemId, name, comment) => {
   return response;
 };
 const getReservations = async (itemId) => {
-  let answer = [];
+  let reservations = [];
   const data = await getData(INVOLVEMENT_API_URL, `apps/${apiId}/reservations?item_id=${itemId}`);
-  answer = data;
+  reservations = data;
 
-  return answer;
+  return reservations;
 };
 
 export {
